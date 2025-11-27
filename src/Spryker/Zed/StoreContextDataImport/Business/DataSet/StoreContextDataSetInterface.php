@@ -17,7 +17,7 @@ interface StoreContextDataSetInterface
     /**
      * @var string
      */
-    public const COLUMN_APPLICATION_CONTEXT_COLLECTION = 'appication_context_collection';
+    public const COLUMN_APPLICATION_CONTEXT_COLLECTION = 'application_context_collection';
 
     /**
      * @var string

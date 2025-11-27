@@ -96,4 +96,26 @@ class StoreContextDataImportPluginTest extends Unit
         // Assert
         $this->assertSame(StoreContextDataImportConfig::IMPORT_TYPE_STORE_CONTEXT, $importType);
     }
+
+    public function testStoreContextImportImportsDataWithTypoInColumnName(): void
+    {
+        // Arrange
+        $this->tester->ensureStoreContextDatabaseTableIsEmpty();
+
+        $dataImporterReaderConfigurationTransfer = new DataImporterReaderConfigurationTransfer();
+        $dataImporterReaderConfigurationTransfer->setFileName(codecept_data_dir() . 'import/store_context_with_typo.csv');
+
+        $dataImportConfigurationTransfer = (new DataImporterConfigurationTransfer())
+            ->setReaderConfiguration($dataImporterReaderConfigurationTransfer)
+            ->setThrowException(true);
+
+        $storeContextDataImportPlugin = new StoreContextDataImportPlugin();
+
+        // Act
+        $dataImporterReportTransfer = $storeContextDataImportPlugin->import($dataImportConfigurationTransfer);
+
+        // Assert
+        $this->assertInstanceOf(DataImporterReportTransfer::class, $dataImporterReportTransfer);
+        $this->assertGreaterThan(0, $this->tester->getStoreContextCount());
+    }
 }

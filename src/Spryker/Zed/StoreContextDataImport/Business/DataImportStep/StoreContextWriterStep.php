@@ -38,7 +38,14 @@ class StoreContextWriterStep implements DataImportStepInterface
             ->filterByFkStore($dataSet[StoreContextDataSetInterface::FK_STORE])
             ->findOneOrCreate();
 
-        $storeContextEntity->setApplicationContextCollection($dataSet[StoreContextDataSetInterface::COLUMN_APPLICATION_CONTEXT_COLLECTION]);
+        // For BC reasons: TYPO in column name is intentional to maintain backward compatibility.
+        if (isset($dataSet['appication_context_collection']) && !isset($dataSet[StoreContextDataSetInterface::COLUMN_APPLICATION_CONTEXT_COLLECTION])) {
+            $applicationContextCollection = $dataSet['appication_context_collection'];
+        }
+
+        $applicationContextCollection = $applicationContextCollection ?? $dataSet[StoreContextDataSetInterface::COLUMN_APPLICATION_CONTEXT_COLLECTION];
+
+        $storeContextEntity->setApplicationContextCollection($applicationContextCollection);
         $storeContextEntity->save();
     }
 }
