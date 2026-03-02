@@ -22,11 +22,6 @@ use Spryker\Zed\StoreContextDataImport\StoreContextDataImportDependencyProvider;
  */
 class StoreContextDataImportBusinessFactory extends DataImportBusinessFactory
 {
-    /**
-     * @param \Generated\Shared\Transfer\DataImporterConfigurationTransfer|null $dataImporterConfigurationTransfer
-     *
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImporterInterface
-     */
     public function getStoreContextDataImporter(
         ?DataImporterConfigurationTransfer $dataImporterConfigurationTransfer = null
     ): DataImporterInterface {
@@ -44,17 +39,11 @@ class StoreContextDataImportBusinessFactory extends DataImportBusinessFactory
         return $dataImporter;
     }
 
-    /**
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface
-     */
     public function createStoreNameToIdStoreStep(): DataImportStepInterface
     {
         return new StoreNameToIdStoreStep($this->getStorePropelQuery());
     }
 
-    /**
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface
-     */
     public function createStoreContextWriterStep(): DataImportStepInterface
     {
         return new StoreContextWriterStep($this->getStoreContextPropelQuery());

@@ -32,25 +32,16 @@ class StoreContextDataImportCommunicationTester extends Actor
 {
     use _generated\StoreContextDataImportCommunicationTesterActions;
 
-    /**
-     * @return void
-     */
     public function ensureStoreContextDatabaseTableIsEmpty(): void
     {
         $this->getStoreContextQuery()->deleteAll();
     }
 
-    /**
-     * @return int
-     */
     public function getStoreContextCount(): int
     {
         return $this->getStoreContextQuery()->count();
     }
 
-    /**
-     * @return \Orm\Zed\StoreContext\Persistence\SpyStoreContextQuery
-     */
     protected function getStoreContextQuery(): SpyStoreContextQuery
     {
         return SpyStoreContextQuery::create();

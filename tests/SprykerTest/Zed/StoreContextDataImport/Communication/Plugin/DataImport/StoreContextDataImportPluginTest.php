@@ -35,9 +35,6 @@ class StoreContextDataImportPluginTest extends Unit
      */
     protected StoreContextDataImportCommunicationTester $tester;
 
-    /**
-     * @return void
-     */
     public function testStoreContextImportImportsData(): void
     {
         // Arrange
@@ -60,9 +57,6 @@ class StoreContextDataImportPluginTest extends Unit
         $this->assertGreaterThan(0, $this->tester->getStoreContextCount());
     }
 
-    /**
-     * @return void
-     */
     public function testImportWithUnknownStore(): void
     {
         $this->expectException(DataImportException::class);
@@ -82,9 +76,6 @@ class StoreContextDataImportPluginTest extends Unit
         $storeContextDataImportPlugin->import($dataImportConfigurationTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testStoreContextGetImportTypeReturnsTypeOfImporter(): void
     {
         // Arrange

@@ -37,9 +37,6 @@ class StoreContextDataImportConfig extends DataImportConfig
         return $this->buildImporterConfiguration($moduleDataImportDirectory . 'store-context.csv', static::IMPORT_TYPE_STORE_CONTEXT);
     }
 
-    /**
-     * @return string
-     */
     protected function getModuleRoot(): string
     {
         $moduleRoot = realpath(
